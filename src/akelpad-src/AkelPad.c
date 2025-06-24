@@ -748,7 +748,7 @@ EXTERN_C int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPTSTR lpCmd
 
   //INI
   WCHAR wszAppDataPath[MAX_PATH];
-  SHGetFolderPathW(NULL, CSIDL_APPDATA, NULL, 0, wszAppDataPath)
+  SHGetFolderPathW(NULL, CSIDL_APPDATA, NULL, 0, wszAppDataPath);
   xprintfW(wszAkelPadIni, L"%s\\AkelPad\\AkelPad.ini", wszAppDataPath);
 
   //System default codepages
