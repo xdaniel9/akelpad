@@ -22,7 +22,8 @@
 #include "AkelFiles\Plugs\AkelDLL\AkelDLL.h"
 #include "AkelPad.h"
 #include "Edit.h"
-
+#include <shlwapi.h>
+#pragma comment(lib, "shlwapi.lib")
 
 /*
 //Include stack functions
