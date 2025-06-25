@@ -747,9 +747,18 @@ EXTERN_C int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPTSTR lpCmd
   wszAkelAdminExe[0]=L'\0';
 
   //INI
-  WCHAR wszAppDataPath[MAX_PATH];
-  SHGetFolderPathW(NULL, CSIDL_APPDATA, NULL, 0, wszAppDataPath);
-  xprintfW(wszAkelPadIni, L"%s\\AkelPad\\AkelPad.ini", wszAppDataPath);
+  WCHAR wszPortableFile[MAX_PATH];
+  xprintfW(wszPortableFile, L"%s\\portable.dat", wszExeDir);
+  if (PathFileExistsW(wszPortableFile)) {
+    xprintfW(wszAkelPadIni, L"%s\\AkelPad.ini", wszExeDir);
+  } else {
+    WCHAR wszAppDataPath[MAX_PATH];
+    SHGetFolderPathW(NULL, CSIDL_APPDATA, NULL, 0, wszAppDataPath);
+    WCHAR wszAppDataDir[MAX_PATH];
+    xprintfW(wszAppDataDir, L"%s\\AkelPad", wszAppDataPath);
+    CreateDirectoryW(wszAppDataDir, NULL);
+    xprintfW(wszAkelPadIni, L"%s\\AkelPad.ini", wszAppDataDir);
+  }
 
   //System default codepages
   nAnsiCodePage=GetACP();
